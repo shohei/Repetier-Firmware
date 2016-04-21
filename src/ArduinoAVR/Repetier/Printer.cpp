@@ -829,30 +829,42 @@ void Printer::setup()
     SET_OUTPUT(X_STEP_PIN);
     SET_OUTPUT(Y_STEP_PIN);
     SET_OUTPUT(Z_STEP_PIN);
+    SET_OUTPUT(XX_STEP_PIN);
+    SET_OUTPUT(YY_STEP_PIN);
+    SET_OUTPUT(ZZ_STEP_PIN);
 	endXYZSteps();
     //Initialize Dir Pins
 #if X_DIR_PIN > -1
     SET_OUTPUT(X_DIR_PIN);
+    SET_OUTPUT(XX_DIR_PIN);
 #endif
 #if Y_DIR_PIN > -1
     SET_OUTPUT(Y_DIR_PIN);
+    SET_OUTPUT(YY_DIR_PIN);
 #endif
 #if Z_DIR_PIN > -1
     SET_OUTPUT(Z_DIR_PIN);
+    SET_OUTPUT(ZZ_DIR_PIN);
 #endif
 
     //Steppers default to disabled.
 #if X_ENABLE_PIN > -1
     SET_OUTPUT(X_ENABLE_PIN);
+    SET_OUTPUT(XX_ENABLE_PIN);
     WRITE(X_ENABLE_PIN, !X_ENABLE_ON);
+    WRITE(XX_ENABLE_PIN, !X_ENABLE_ON);
 #endif
 #if Y_ENABLE_PIN > -1
     SET_OUTPUT(Y_ENABLE_PIN);
+    SET_OUTPUT(YY_ENABLE_PIN);
     WRITE(Y_ENABLE_PIN, !Y_ENABLE_ON);
+    WRITE(YY_ENABLE_PIN, !Y_ENABLE_ON);
 #endif
 #if Z_ENABLE_PIN > -1
     SET_OUTPUT(Z_ENABLE_PIN);
+    SET_OUTPUT(ZZ_ENABLE_PIN);
     WRITE(Z_ENABLE_PIN, !Z_ENABLE_ON);
+    WRITE(ZZ_ENABLE_PIN, !Z_ENABLE_ON);
 #endif
 #if FEATURE_TWO_XSTEPPER || DUAL_X_AXIS
     SET_OUTPUT(X2_STEP_PIN);
@@ -924,8 +936,10 @@ void Printer::setup()
 #if MAX_HARDWARE_ENDSTOP_X
 #if X_MAX_PIN > -1
     SET_INPUT(X_MAX_PIN);
+    SET_INPUT(XX_MAX_PIN);
 #if ENDSTOP_PULLUP_X_MAX
     PULLUP(X_MAX_PIN, HIGH);
+    PULLUP(XX_MAX_PIN, HIGH);
 #endif
 #else
 #error You have defined hardware x max endstop without pin assignment. Set pin number for X_MAX_PIN
@@ -934,8 +948,10 @@ void Printer::setup()
 #if MAX_HARDWARE_ENDSTOP_Y
 #if Y_MAX_PIN > -1
     SET_INPUT(Y_MAX_PIN);
+    SET_INPUT(YY_MAX_PIN);
 #if ENDSTOP_PULLUP_Y_MAX
     PULLUP(Y_MAX_PIN, HIGH);
+    PULLUP(YY_MAX_PIN, HIGH);
 #endif
 #else
 #error You have defined hardware y max endstop without pin assignment. Set pin number for Y_MAX_PIN
@@ -944,8 +960,10 @@ void Printer::setup()
 #if MAX_HARDWARE_ENDSTOP_Z
 #if Z_MAX_PIN>-1
     SET_INPUT(Z_MAX_PIN);
+    SET_INPUT(ZZ_MAX_PIN);
 #if ENDSTOP_PULLUP_Z_MAX
     PULLUP(Z_MAX_PIN, HIGH);
+    PULLUP(ZZ_MAX_PIN, HIGH);
 #endif
 #else
 #error You have defined hardware z max endstop without pin assignment. Set pin number for Z_MAX_PIN
